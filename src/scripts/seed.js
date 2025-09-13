@@ -5,6 +5,7 @@ import { newEngineParts } from './newEngineParts.js';
 import { undercarriageParts } from './undercarriageParts.js';
 import { jcbHydraulicParts } from './jcbHydraulicParts.js';
 import { jcbAdditionalParts } from './jcbAdditionalParts.js';
+import { generateExternalLink, isManufacturerSupported } from '../utils/externalLinks.js';
 
 // Load environment variables
 dotenv.config();
@@ -483,7 +484,9 @@ async function main() {
           description: part.description,
           shortDescription: part.shortDescription,
           price: part.price ? part.price : undefined,
-          externalLink: part.externalLink || null,
+          externalLink: part.externalLink || (manufacturer && isManufacturerSupported(manufacturer.name) 
+            ? generateExternalLink(manufacturer.name, part.partNumber) 
+            : null),
           images: [`/images/parts/${part.partNumber.toLowerCase().replace(/[^a-z0-9]/g, '-')}.jpg`],
           tags: part.tags,
           categoryId: category.id,
