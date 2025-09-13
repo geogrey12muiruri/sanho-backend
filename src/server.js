@@ -41,8 +41,10 @@ app.use(cors({
   origin: [
     process.env.FRONTEND_URL || 'http://localhost:8080',
     'http://localhost:8081',
-    'https://sanho-parts-connect.vercel.app', // Add your frontend domain here
-    'https://sanho-parts-connect.netlify.app'  // Add your frontend domain here
+    'https://www.sanho.co.ke', // Production domain
+    'https://sanho.co.ke', // Production domain without www
+    'https://sanho-parts-connect.vercel.app', // Vercel deployment
+    'https://sanho-parts-connect.netlify.app'  // Netlify deployment
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],

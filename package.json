@@ -18,6 +18,7 @@
     "db:migrate": "prisma migrate dev",
     "db:seed": "node src/scripts/seed.js",
     "db:update-links": "node src/scripts/updateExternalLinks.js",
+    "db:update-images": "node src/scripts/updatePartImages.js",
     "scrape": "node src/scripts/scraper.js",
     "process-scraped": "node src/scripts/processScrapedData.js"
   },

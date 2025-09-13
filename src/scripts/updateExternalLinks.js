@@ -30,9 +30,9 @@ async function updateExternalLinks() {
 
     for (const part of parts) {
       try {
-        // Skip if part already has an external link
-        if (part.externalLink) {
-          console.log(`⏭️  Skipping ${part.partNumber} - already has external link`);
+        // Skip if part already has an external link with search parameters
+        if (part.externalLink && part.externalLink.includes('?')) {
+          console.log(`⏭️  Skipping ${part.partNumber} - already has search URL`);
           skippedCount++;
           continue;
         }

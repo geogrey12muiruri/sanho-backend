@@ -6,9 +6,8 @@
 const MANUFACTURER_LINKS = {
   'JCB': {
     baseUrl: 'https://www.interpart.com/jcb-parts',
-    searchParam: 'search', // TODO: Verify actual search parameter
-    description: 'Search on Interpart JCB Parts Finder',
-    note: 'URL structure needs verification - may need to use quote request form instead'
+    searchParam: 'combine', // Verified: Interpart uses 'combine' parameter
+    description: 'Search on Interpart JCB Parts Finder'
   },
   'Caterpillar': {
     baseUrl: 'https://parts.cat.com/en/catcorp',
@@ -73,9 +72,11 @@ function generateExternalLink(manufacturerName, partNumber) {
     return null;
   }
 
-  // For now, return the base URL - users can search for the part number on the page
-  // TODO: Implement actual search URL parameters after testing each manufacturer's site
-  return manufacturer.baseUrl;
+  // Generate search URL with part number
+  const searchParams = new URLSearchParams();
+  searchParams.set(manufacturer.searchParam, partNumber);
+  
+  return `${manufacturer.baseUrl}?${searchParams.toString()}`;
 }
 
 /**
