@@ -31,10 +31,10 @@ export const getParts = async (req, res, next) => {
       });
       
       if (parentCategory && parentCategory.children.length > 0) {
-        // If it's a parent category, get all child category IDs
+        // If it's a parent category, get all child category IDs plus the parent itself
         const childCategoryIds = parentCategory.children.map(child => child.id);
         where.categoryId = {
-          in: childCategoryIds
+          in: [parentCategory.id, ...childCategoryIds]
         };
       } else {
         // If it's a child category, filter by slug
